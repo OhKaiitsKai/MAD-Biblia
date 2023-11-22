@@ -63,6 +63,7 @@ namespace biblia
             DateTime fechaNacimiento = fecha_nacimiento.Value;
             bool femeninoChecked = F.Checked;
             bool masculinoChecked = M.Checked;
+            string rol_val = "UsuarioNormal";
 
             // Expresión regular para validar el formato del correo electrónico y contraseña
             string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
@@ -97,8 +98,10 @@ namespace biblia
                 if (femeninoChecked)
                 {
                     string Femenino = "F";
+                    // bool registrado = enlaceDB.RegistrarUsuario(nombrec_val, Femenino, email_val,
+                    //   password_val, fechaNacimiento);
                     bool registrado = enlaceDB.RegistrarUsuario(nombrec_val, Femenino, email_val,
-                        password_val, fechaNacimiento);
+                       password_val, fechaNacimiento, rol_val, DateTime.Now, true);
                     if (registrado)
                     {
                         MessageBox.Show("Usuario registrado correctamente.", "Éxito",
@@ -113,8 +116,11 @@ namespace biblia
                 else
                 {
                     string Masculino = "M";
+                   // bool registrado = enlaceDB.RegistrarUsuario(nombrec_val, Masculino, email_val,
+                     //   password_val, fechaNacimiento);
                     bool registrado = enlaceDB.RegistrarUsuario(nombrec_val, Masculino, email_val,
-                        password_val, fechaNacimiento);
+                        password_val, fechaNacimiento, rol_val, DateTime.Now, true);
+
                     if (registrado)
                     {
                         MessageBox.Show("Usuario registrado correctamente", "Éxito",
@@ -180,6 +186,11 @@ namespace biblia
         private void M_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Registro_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

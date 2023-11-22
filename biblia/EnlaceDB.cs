@@ -26,17 +26,16 @@ namespace biblia
             _conexion.Close();
         }
 
-        public bool RegistrarUsuario(string nombreCompleto, string genero, string email, string contraseña, DateTime fechaNacimiento)
+        public bool RegistrarUsuario(string nombreCompleto, string genero, string email, string contraseña, 
+            DateTime fechaNacimiento, string rol, DateTime fechaRegistro, bool activo)
         {
             bool registrado = false;
 
             try
             {
                 conectar();
-                string qry = "INSERT INTO dbo.Usuario (nombre_completo, genero, " +
-                    "email, contraseña, fecha_nacimiento) " +
-                                      "VALUES (@nombreCompleto, @genero, @email," +
-                                      "@contraseña, @fechaNacimiento)";
+                string qry = "INSERT INTO dbo.Usuario (nombre_completo, genero, email, contraseña, fecha_nacimiento, rol, fechahora_registro, activo) " +
+                     "VALUES (@nombreCompleto, @genero, @email, @contraseña, @fechaNacimiento, @rol, @fechaRegistro, @activo)";
 
                 _comandosql = new SqlCommand(qry, _conexion);
                 _comandosql.Parameters.AddWithValue("@nombreCompleto", nombreCompleto);
@@ -44,6 +43,10 @@ namespace biblia
                 _comandosql.Parameters.AddWithValue("@email", email);
                 _comandosql.Parameters.AddWithValue("@contraseña", contraseña);
                 _comandosql.Parameters.AddWithValue("@fechaNacimiento", fechaNacimiento);
+                _comandosql.Parameters.AddWithValue("@rol", rol);
+                _comandosql.Parameters.AddWithValue("@fechaRegistro", fechaRegistro);
+                _comandosql.Parameters.AddWithValue("@activo", activo);
+
 
                 int filasAfectadas = _comandosql.ExecuteNonQuery();
                 if (filasAfectadas > 0)
@@ -65,6 +68,7 @@ namespace biblia
 
             return registrado;
         }
+
         public bool IniciarSesion(string email, string contraseña)
         {
             bool inicioSesionExitoso = false;
@@ -95,6 +99,7 @@ namespace biblia
 
             return inicioSesionExitoso;
         }
+
 
     }
 }

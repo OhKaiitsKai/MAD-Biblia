@@ -60,6 +60,9 @@ namespace biblia
                 {
                     MessageBox.Show("Inicio de sesión exitoso", "Éxito", 
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Hide();
+                    Consultas consultas = new Consultas();
+                    consultas.Show();
                 }
                 else
                 {
@@ -67,9 +70,7 @@ namespace biblia
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            Hide();
-            Consultas consultas = new Consultas();
-            consultas.Show();
+            
         }
     }
 }
