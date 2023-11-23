@@ -129,16 +129,19 @@ namespace biblia
 
                 if (guardadoExitoso)
                 {
-                    MessageBox.Show("Se ha guardado en favoritos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Se ha guardado en favoritos.", "Éxito", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Hubo un error al guardar en favoritos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Hubo un error al guardar en favoritos.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("No se ha seleccionado ninguna fila.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se ha seleccionado ninguna fila.", "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -152,6 +155,13 @@ namespace biblia
         private void historialToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void búsquedaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Busqueda busqueda = new Busqueda();
+            busqueda.Show();
         }
     }
 }

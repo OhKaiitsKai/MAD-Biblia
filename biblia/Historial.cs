@@ -12,13 +12,24 @@ namespace biblia
 {
     public partial class Historial : Form
     {
+        private EnlaceDB enlaceDB;
         public Historial()
         {
             InitializeComponent();
+            enlaceDB = new EnlaceDB(); 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
                     }
+
+        private void Historial_Load(object sender, EventArgs e)
+        {
+            int usuarioID = ObjetoDB.UsuarioID;
+
+            DataTable historialBusqueda = enlaceDB.ObtenerHistorialBusqueda(usuarioID);
+
+            dataGridView1.DataSource = historialBusqueda;
+        }
     }
 }

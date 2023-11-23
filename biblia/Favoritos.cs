@@ -12,9 +12,11 @@ namespace biblia
 {
     public partial class Favoritos : Form
     {
+        private EnlaceDB enlaceDB;
         public Favoritos()
         {
             InitializeComponent();
+            enlaceDB = new EnlaceDB();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -53,6 +55,13 @@ namespace biblia
         }
 
         private void Favoritos_Load(object sender, EventArgs e)
+        {
+            DataTable favoritosData = enlaceDB.ObtenerDatosFavoritos();
+
+            dataGridView1.DataSource = favoritosData;
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

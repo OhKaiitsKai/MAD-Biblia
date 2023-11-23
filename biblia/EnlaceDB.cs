@@ -296,6 +296,132 @@ namespace biblia
             return guardadoExitoso;
         }
 
+        public DataTable ObtenerDatosFavoritos()
+        {
+            DataTable favoritosData = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "SELECT * FROM dbo.Favoritos"; // Ajusta la consulta según tus necesidades
+
+                _comandosql = new SqlCommand(qry, _conexion);
+                SqlDataAdapter adapter = new SqlDataAdapter(_comandosql);
+
+                adapter.Fill(favoritosData);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error al obtener datos de Favoritos: " + ex.Message);
+                // Manejo de errores aquí
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return favoritosData;
+        }
+
+        public DataTable BuscarVersiculosPorPalabra(string palabraClave)
+        {
+            DataTable resultados = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "SELECT Libros.Nombre AS NombreLibro, Versiculos.NumeroCap, " +
+                             "Versiculos.NumeroVers, Versiculos.Texto " +
+                             "FROM dbo.Versiculos " +
+                             "INNER JOIN Libros ON Versiculos.Id_Libro = Libros.Id_Libro " +
+                             "WHERE Versiculos.Texto LIKE @palabraClave";
+
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.Parameters.AddWithValue("@palabraClave", "%" + palabraClave + "%");
+
+                SqlDataAdapter adapter = new SqlDataAdapter(_comandosql);
+                adapter.Fill(resultados);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error al buscar versículos: " + ex.Message);
+                // Manejo de errores aquí
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return resultados;
+        }
+
+        public bool GuardarBusqueda(int usuarioID, string palabraClave)
+        {
+            try
+            {
+                conectar();
+
+                string qry = "INSERT INTO dbo.Busqueda (fecha_hora, texto_busqueda, UsuarioFK) " +
+                             "VALUES (@fechaHora, @textoBusqueda, @usuarioID)";
+
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.Parameters.AddWithValue("@fechaHora", DateTime.Now);
+                _comandosql.Parameters.AddWithValue("@textoBusqueda", palabraClave);
+                _comandosql.Parameters.AddWithValue("@usuarioID", usuarioID);
+
+                int filasAfectadas = _comandosql.ExecuteNonQuery();
+                if (filasAfectadas > 0)
+                {
+                    return true; // Se guardó la búsqueda correctamente
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error al guardar búsqueda: " + ex.Message);
+                // Manejo de errores aquí
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return false; // Error al guardar la búsqueda
+        }
+
+        public DataTable ObtenerHistorialBusqueda(int usuarioID)
+        {
+            DataTable historialBusqueda = new DataTable();
+
+            try
+            {
+                conectar();
+
+                string qry = "SELECT IDBusqueda, fecha_hora, texto_busqueda " +
+                             "FROM dbo.Busqueda " +
+                             "WHERE UsuarioFK = @usuarioID";
+
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.Parameters.AddWithValue("@usuarioID", usuarioID);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(_comandosql);
+                adapter.Fill(historialBusqueda);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error al obtener historial de búsqueda: " + ex.Message);
+                // Manejo de errores aquí
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return historialBusqueda;
+        }
+
+
 
     }
 }
