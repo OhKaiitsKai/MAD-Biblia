@@ -84,7 +84,7 @@ namespace biblia
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(656, 57);
+            this.button4.Location = new System.Drawing.Point(656, 154);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(132, 34);
             this.button4.TabIndex = 15;
@@ -93,12 +93,13 @@ namespace biblia
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(656, 114);
+            this.button1.Location = new System.Drawing.Point(656, 90);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 34);
             this.button1.TabIndex = 16;
-            this.button1.Text = "Borrar pasaje";
+            this.button1.Text = "Borrar elemento";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Historial
             // 

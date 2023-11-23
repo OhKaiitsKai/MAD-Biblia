@@ -296,24 +296,32 @@ namespace biblia
             return guardadoExitoso;
         }
 
-        public DataTable ObtenerDatosFavoritos()
+        public DataTable ObtenerDatosFavoritos(int usuarioID)
         {
-            DataTable favoritosData = new DataTable();
+            DataTable datosFavoritos = new DataTable();
 
             try
             {
                 conectar();
 
-                string qry = "SELECT * FROM dbo.Favoritos"; // Ajusta la consulta según tus necesidades
+                string qry = "SELECT f.IDFavorito, v.Texto, v.NumeroCap, v.NumeroVers, " +
+                             "l.Nombre AS NombreLibro " +
+                             "FROM dbo.Favoritos f " +
+                             "INNER JOIN Versiculos v ON f.LibroFK = v.Id_Libro " +
+                             "AND f.NumeroCap = v.NumeroCap " +
+                             "AND f.NumeroVers = v.NumeroVers " +
+                             "INNER JOIN Libros l ON v.Id_Libro = l.Id_Libro " +
+                             "WHERE f.UsuarioFK = @usuarioID";
 
                 _comandosql = new SqlCommand(qry, _conexion);
-                SqlDataAdapter adapter = new SqlDataAdapter(_comandosql);
+                _comandosql.Parameters.AddWithValue("@usuarioID", usuarioID);
 
-                adapter.Fill(favoritosData);
+                SqlDataAdapter adapter = new SqlDataAdapter(_comandosql);
+                adapter.Fill(datosFavoritos);
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("Error al obtener datos de Favoritos: " + ex.Message);
+                Console.WriteLine("Error al obtener datos de favoritos: " + ex.Message);
                 // Manejo de errores aquí
             }
             finally
@@ -321,8 +329,43 @@ namespace biblia
                 desconectar();
             }
 
-            return favoritosData;
+            return datosFavoritos;
         }
+
+        public bool EliminarFavorito(int idFavorito)
+        {
+            bool eliminacionExitosa = false;
+
+            try
+            {
+                conectar();
+
+                string qry = "DELETE FROM dbo.Favoritos WHERE IDFavorito = @idFavorito";
+
+                _comandosql = new SqlCommand(qry, _conexion);
+                _comandosql.Parameters.AddWithValue("@idFavorito", idFavorito);
+
+                int filasAfectadas = _comandosql.ExecuteNonQuery();
+
+                if (filasAfectadas > 0)
+                {
+                    eliminacionExitosa = true; // Se actualizó correctamente la base de datos
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error al eliminar el favorito: " + ex.Message);
+                // Manejo de errores aquí, si es necesario
+            }
+            finally
+            {
+                desconectar();
+            }
+
+            return eliminacionExitosa;
+        }
+
+       // public int FavoritoID { get; private set; }
 
         public DataTable BuscarVersiculosPorPalabra(string palabraClave)
         {

@@ -31,7 +31,7 @@ namespace biblia
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Favoritos));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.favoritosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.perfilToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,15 +50,15 @@ namespace biblia
             this.dataGridView1.Size = new System.Drawing.Size(627, 376);
             this.dataGridView1.TabIndex = 6;
             // 
-            // button3
+            // button1
             // 
-            this.button3.Location = new System.Drawing.Point(656, 389);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(132, 34);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Eliminar pasaje";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.button1.Location = new System.Drawing.Point(656, 389);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(132, 34);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Eliminar pasaje";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuStrip1
             // 
@@ -99,7 +99,7 @@ namespace biblia
             this.BackColor = System.Drawing.Color.Linen;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Favoritos";
@@ -116,7 +116,7 @@ namespace biblia
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem favoritosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem perfilToolStripMenuItem;

@@ -19,34 +19,40 @@ namespace biblia
             enlaceDB = new EnlaceDB();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                int filaSeleccionada = dataGridView1.SelectedRows[0].Index;
+                int idFavorito = Convert.ToInt32(dataGridView1.Rows[filaSeleccionada].Cells["IDFavorito"].Value);
 
-        }
+                // Eliminar la fila correspondiente en la base de datos usando el ID del favorito seleccionado
+                bool eliminacionExitosa = enlaceDB.EliminarFavorito(idFavorito);
 
-        private void button3_Click(object sender, EventArgs e)
-        {
+                if (eliminacionExitosa)
+                {
+                    // Actualizar el DataGridView después de la eliminación
+                    int usuarioID = ObjetoDB.UsuarioID;
+                    DataTable nuevosDatosFavoritos = enlaceDB.ObtenerDatosFavoritos(usuarioID);
+                    dataGridView1.DataSource = nuevosDatosFavoritos;
 
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-
+                    // Mensaje de éxito o proceder con lógica adicional
+                    MessageBox.Show("Se eliminó el favorito correctamente.", 
+                        "Eliminación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    // Mensaje de error si la eliminación falla
+                    MessageBox.Show("Error al eliminar el favorito.", 
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Mensaje si no hay fila seleccionada
+                MessageBox.Show("Selecciona una fila para eliminar.", 
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void Favoritos_FormClosed(object sender, FormClosedEventArgs e)
@@ -56,9 +62,12 @@ namespace biblia
 
         private void Favoritos_Load(object sender, EventArgs e)
         {
-            DataTable favoritosData = enlaceDB.ObtenerDatosFavoritos();
+            int usuarioID = ObjetoDB.UsuarioID;
 
-            dataGridView1.DataSource = favoritosData;
+            DataTable datosFavoritos = enlaceDB.ObtenerDatosFavoritos(usuarioID);
+
+            dataGridView1.DataSource = datosFavoritos;
+
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
