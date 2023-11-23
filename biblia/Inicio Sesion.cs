@@ -58,6 +58,10 @@ namespace biblia
 
                 if (inicioSesionExitoso)
                 {
+                    int usuarioID = enlaceDB.ObtenerUsuarioID(email, password);
+                    ObjetoDB.UsuarioID = usuarioID;
+                    Console.WriteLine("UsuarioID obtenido: " + usuarioID);
+                    //ObjetoDB.UsuarioID = enlaceDB.UsuarioID;
                     MessageBox.Show("Inicio de sesión exitoso", "Éxito", 
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Hide();

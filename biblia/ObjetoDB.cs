@@ -8,6 +8,6 @@ namespace biblia
 {
     public class ObjetoDB
     {
-
+        public static int UsuarioID { get; set; }
     }
 }

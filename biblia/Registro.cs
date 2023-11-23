@@ -104,8 +104,10 @@ namespace biblia
                        password_val, fechaNacimiento, rol_val, DateTime.Now, true);
                     if (registrado)
                     {
+                        _ = enlaceDB.ObtenerUsuarioID(email_val, password_val);
                         MessageBox.Show("Usuario registrado correctamente.", "Éxito",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Hide();
                     }
                     else
                     {
@@ -123,6 +125,8 @@ namespace biblia
 
                     if (registrado)
                     {
+                        _ = enlaceDB.ObtenerUsuarioID(email_val, password_val);
+                        ObjetoDB.UsuarioID = enlaceDB.UsuarioID;
                         MessageBox.Show("Usuario registrado correctamente", "Éxito",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);  
                     }
@@ -133,9 +137,9 @@ namespace biblia
                     }
                 }
             }
-            Hide();
-            Registro registro = new Registro();
-            registro.Show();
+            
+            //Registro registro = new Registro();
+            //registro.Show();
         }
 
         private void label4_Click(object sender, EventArgs e)

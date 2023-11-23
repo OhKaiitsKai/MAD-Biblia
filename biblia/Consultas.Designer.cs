@@ -104,7 +104,7 @@ namespace biblia
             this.historialToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(811, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1172, 28);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -131,7 +131,7 @@ namespace biblia
             // 
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(99, 142);
+            this.comboBox2.Location = new System.Drawing.Point(99, 97);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(149, 39);
             this.comboBox2.TabIndex = 10;
@@ -140,7 +140,7 @@ namespace biblia
             // 
             this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(99, 97);
+            this.comboBox3.Location = new System.Drawing.Point(99, 142);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(149, 39);
             this.comboBox3.TabIndex = 11;
@@ -152,21 +152,23 @@ namespace biblia
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(582, 273);
+            this.dataGridView1.Size = new System.Drawing.Size(942, 273);
             this.dataGridView1.TabIndex = 12;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(663, 227);
+            this.button2.Location = new System.Drawing.Point(1016, 368);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 56);
             this.button2.TabIndex = 13;
             this.button2.Text = "Agregar a favoritos";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(663, 289);
+            this.button3.Location = new System.Drawing.Point(1016, 430);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(136, 36);
             this.button3.TabIndex = 14;
@@ -179,7 +181,7 @@ namespace biblia
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Linen;
-            this.ClientSize = new System.Drawing.Size(811, 512);
+            this.ClientSize = new System.Drawing.Size(1172, 530);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
@@ -195,6 +197,7 @@ namespace biblia
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Consultas";
             this.Text = "Consultas";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Consultas_FormClosed);
             this.Load += new System.EventHandler(this.Consultas_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
