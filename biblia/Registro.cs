@@ -108,6 +108,8 @@ namespace biblia
                         MessageBox.Show("Usuario registrado correctamente.", "Éxito",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Hide();
+                        Consultas consultas = new Consultas();
+                        consultas.Show();
                     }
                     else
                     {
@@ -129,6 +131,9 @@ namespace biblia
                         ObjetoDB.UsuarioID = enlaceDB.UsuarioID;
                         MessageBox.Show("Usuario registrado correctamente", "Éxito",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);  
+                        Hide();
+                        Consultas consultas = new Consultas();
+                        consultas.Show();
                     }
                     else 
                     {

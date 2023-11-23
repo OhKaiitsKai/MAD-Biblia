@@ -58,6 +58,7 @@ namespace biblia
             this.button3.TabIndex = 8;
             this.button3.Text = "Eliminar pasaje";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // menuStrip1
             // 
@@ -102,6 +103,8 @@ namespace biblia
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Favoritos";
             this.Text = "Favoritos";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Favoritos_FormClosed);
+            this.Load += new System.EventHandler(this.Favoritos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

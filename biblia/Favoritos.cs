@@ -41,5 +41,20 @@ namespace biblia
         {
 
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Favoritos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Favoritos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

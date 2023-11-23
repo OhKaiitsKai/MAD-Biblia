@@ -141,5 +141,17 @@ namespace biblia
                 MessageBox.Show("No se ha seleccionado ninguna fila.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void favoritosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Hide();
+            Favoritos favoritos = new Favoritos();
+            favoritos.Show();
+        }
+
+        private void historialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

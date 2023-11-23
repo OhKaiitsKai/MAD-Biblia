@@ -100,8 +100,8 @@ namespace biblia
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.favoritosToolStripMenuItem,
-            this.perfilToolStripMenuItem,
-            this.historialToolStripMenuItem});
+            this.historialToolStripMenuItem,
+            this.perfilToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1172, 28);
@@ -113,6 +113,7 @@ namespace biblia
             this.favoritosToolStripMenuItem.Name = "favoritosToolStripMenuItem";
             this.favoritosToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.favoritosToolStripMenuItem.Text = "Favoritos";
+            this.favoritosToolStripMenuItem.Click += new System.EventHandler(this.favoritosToolStripMenuItem_Click);
             // 
             // perfilToolStripMenuItem
             // 
@@ -126,6 +127,7 @@ namespace biblia
             this.historialToolStripMenuItem.Name = "historialToolStripMenuItem";
             this.historialToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
             this.historialToolStripMenuItem.Text = "Perfil";
+            this.historialToolStripMenuItem.Click += new System.EventHandler(this.historialToolStripMenuItem_Click);
             // 
             // comboBox2
             // 
