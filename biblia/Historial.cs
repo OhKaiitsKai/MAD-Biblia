@@ -31,5 +31,10 @@ namespace biblia
 
             dataGridView1.DataSource = historialBusqueda;
         }
+
+        private void Historial_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

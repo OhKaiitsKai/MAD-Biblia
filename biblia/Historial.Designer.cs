@@ -113,6 +113,7 @@ namespace biblia
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Historial";
             this.Text = "Historial";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Historial_FormClosed);
             this.Load += new System.EventHandler(this.Historial_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
